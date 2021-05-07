@@ -18,6 +18,12 @@ function* watchGetUsersRequest() {
   yield takeEvery(actions.Types.GET_USERS_REQUEST, getUsers);
 }
 
+function* AddNewUser(item) {}
+
+function* watchAddNewUserRequest() {
+  yield takeEvery(actions.Types.ADD_USER_REQUEST, AddNewUser);
+}
+
 const usersSaga = [fork(watchGetUsersRequest)];
 
 export default usersSaga;
