@@ -12,3 +12,8 @@ export const createNewPost = ({ post }) => {
     userId: 1,
   });
 };
+
+export const deletePost = ({ postId }) => {
+  console.log("delete post id in api is ", postId);
+  return axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+};

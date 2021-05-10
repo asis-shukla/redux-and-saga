@@ -24,7 +24,6 @@ function* watchGetBlogsRequest() {
 
 function* createNewPost({ payload }) {
   try {
-    console.log("payload in saga is", payload);
     const resultStatus = yield call(api.createNewPost, {
       post: payload.post,
     });
@@ -38,6 +37,24 @@ function* createNewPost({ payload }) {
 function* watchCreateNewPostRequest() {
   yield takeLatest(actions.Types.CREATE_NEW_POST, createNewPost);
 }
-const blogsSaga = [fork(watchGetBlogsRequest), fork(watchCreateNewPostRequest)];
+
+function* deletePost({ payload }) {
+  try {
+    yield call(api.deletePost, {
+      postId: payload.postId,
+    });
+    yield call(getBlogs);
+  } catch (error) {
+    console.error("ERROR while deleting the post", error);
+  }
+}
+function* watchDeletePostRequest() {
+  yield takeLatest(actions.Types.DELETE_POST_REQUEST, deletePost);
+}
+const blogsSaga = [
+  fork(watchGetBlogsRequest),
+  fork(watchCreateNewPostRequest),
+  fork(watchDeletePostRequest),
+];
 
 export default blogsSaga;

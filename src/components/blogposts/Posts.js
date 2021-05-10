@@ -1,12 +1,17 @@
+import { Button } from "reactstrap";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchAllPosts } from "../../actions/blogs";
+import { fetchAllPosts, deletePost } from "../../actions/blogs";
 
 class Posts extends Component {
   constructor(props) {
     super(props);
     this.props.fetchPosts();
   }
+
+  handleClickDelete = (postId) => {
+    this.props.deletePost(postId);
+  };
 
   render() {
     if (this.props.posts && this.props.posts.length > 0) {
@@ -17,6 +22,13 @@ class Posts extends Component {
             <div key={post.id}>
               <h3>{post.title}</h3>
               <p>{post.body}</p>
+              <Button
+                color="danger"
+                onClick={() => this.handleClickDelete(post.id)}
+              >
+                Delete Post
+              </Button>
+              <hr />
             </div>
           ))}
         </div>
@@ -32,6 +44,7 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
   fetchPosts: fetchAllPosts,
+  deletePost: deletePost,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
