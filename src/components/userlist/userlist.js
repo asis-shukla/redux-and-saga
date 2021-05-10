@@ -16,7 +16,7 @@ class userlist extends Component {
   handleOnClickSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
-    addNewUserRequest(this.state);
+    this.props.addNewUserRequest({ item: this.state });
   };
 
   handleOnChange = (e) => {
@@ -76,4 +76,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getUsersRequest,
+  addNewUserRequest,
 })(userlist);

@@ -1,5 +1,7 @@
-export const FETCH_POSTS = "FETCH_POSTS";
-export const NEW_POST = "NEW_POST";
+export const Types = {
+  FETCH_POSTS: "FETCH_POSTS",
+  NEW_POST: "NEW_POST",
+};
 
 export const fetchPosts = () => (dispatch) => {
   console.log("fetchposts");
@@ -7,7 +9,7 @@ export const fetchPosts = () => (dispatch) => {
     .then((res) => res.json())
     .then((posts) =>
       dispatch({
-        type: FETCH_POSTS,
+        type: Types.FETCH_POSTS,
         payload: posts,
       })
     );
@@ -26,7 +28,7 @@ export const createPosts = (postData) => (dispatch) => {
     .then((res) => res.json())
     .then((post) =>
       dispatch({
-        type: NEW_POST,
+        type: Types.NEW_POST,
         payload: post,
       })
     );

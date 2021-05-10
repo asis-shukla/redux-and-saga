@@ -16,9 +16,12 @@ export const getUsersSuccess = ({ items }) => ({
   },
 });
 
-export const addNewUserRequest = ({ item }) => ({
-  type: Types.ADD_USER_REQUEST,
-  payload: {
-    item,
-  },
-});
+export const addNewUserRequest = ({ item }) => {
+  return {
+    type: Types.ADD_USER_REQUEST,
+    payload: {
+      firstName: item.firstName,
+      lastName: item.lastName,
+    },
+  };
+};
