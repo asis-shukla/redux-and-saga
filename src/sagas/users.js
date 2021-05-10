@@ -11,7 +11,13 @@ function* getUsers() {
         items: result.data.data,
       })
     );
-  } catch (error) {}
+  } catch (error) {
+    yield put(
+      actions.usersError({
+        error: "An Error Occured when trying to get all the users",
+      })
+    );
+  }
 }
 
 function* watchGetUsersRequest() {
@@ -26,7 +32,13 @@ function* addNewUser({ payload }) {
     });
     console.log(resultStatus);
     yield call(getUsers);
-  } catch {}
+  } catch {
+    yield put(
+      actions.usersError({
+        error: "An error occured when trying to add new user",
+      })
+    );
+  }
 }
 
 function* watchAddNewUserRequest() {
@@ -38,7 +50,11 @@ function* deleteUser({ payload }) {
     yield call(api.deleteUser, { userId: payload.userId });
     yield call(getUsers);
   } catch (error) {
-    console.log("error is ", error);
+    yield put(
+      actions.usersError({
+        error: "An Error occured when trying to delete the users",
+      })
+    );
   }
 }
 
