@@ -33,6 +33,23 @@ function* watchAddNewUserRequest() {
   yield takeLatest(actions.Types.ADD_USER_REQUEST, addNewUser);
 }
 
-const usersSaga = [fork(watchGetUsersRequest), fork(watchAddNewUserRequest)];
+function* deleteUser({ payload }) {
+  try {
+    yield call(api.deleteUser, { userId: payload.userId });
+    yield call(getUsers);
+  } catch (error) {
+    console.log("error is ", error);
+  }
+}
+
+function* watchDeleteUserRequest() {
+  yield takeLatest(actions.Types.DELETE_USER_REQUEST, deleteUser);
+}
+
+const usersSaga = [
+  fork(watchGetUsersRequest),
+  fork(watchAddNewUserRequest),
+  fork(watchDeleteUserRequest),
+];
 
 export default usersSaga;

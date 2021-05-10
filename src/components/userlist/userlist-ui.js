@@ -2,7 +2,7 @@ import React from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 import { Button } from "reactstrap";
 
-const UserListUI = ({ users }) => {
+const UserListUI = ({ users, handleUserDelete }) => {
   return (
     <ListGroup>
       {users.map((user) => (
@@ -16,7 +16,9 @@ const UserListUI = ({ users }) => {
           }}
         >
           {`${user.firstName} ${user.lastName}`}
-          <Button color="danger">Delete</Button>
+          <Button color="danger" onClick={() => handleUserDelete(user.id)}>
+            Delete
+          </Button>
         </ListGroupItem>
       ))}
     </ListGroup>

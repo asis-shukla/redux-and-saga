@@ -2,7 +2,11 @@ import React from "react";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { Input, Label } from "reactstrap";
-import { getUsersRequest, addNewUserRequest } from "../../actions/users";
+import {
+  getUsersRequest,
+  addNewUserRequest,
+  deleteUserRequest,
+} from "../../actions/users";
 import { Button } from "reactstrap";
 import UserListUI from "./userlist-ui";
 
@@ -58,12 +62,15 @@ class userlist extends Component {
           </div>
           <div style={{ width: "30%", marginLeft: "35%" }}>
             <h1> UserList component </h1>
-            <UserListUI users={users} />
+            <UserListUI
+              users={users}
+              handleUserDelete={this.props.deleteUserRequest}
+            />
           </div>
         </div>
       );
     } else {
-      return <div> NO DATA FOUND</div>;
+      return <div> NO DATA FOUND OR DATA IS LOADING</div>;
     }
   }
 }
@@ -77,4 +84,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getUsersRequest,
   addNewUserRequest,
+  deleteUserRequest,
 })(userlist);
