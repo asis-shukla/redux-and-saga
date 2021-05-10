@@ -10,11 +10,6 @@ import rootReducer from "./reducers/index";
 import createSagaMiddleware from "redux-saga";
 
 import rootSaga from "./sagas/index";
-//https://jsonplaceholder.typicode.com/users
-import axios from "axios";
-
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = "http://rem-rest-api.herokuapp.com/api";
 
 const sagaMiddleWare = createSagaMiddleware();
 

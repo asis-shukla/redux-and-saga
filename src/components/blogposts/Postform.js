@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { createPosts } from "../../actions/postactions";
+import { createPost } from "../../actions/blogs";
 import { connect } from "react-redux";
+import { Form, Label, Input, Button } from "reactstrap";
 
 class Postform extends Component {
   constructor(props) {
@@ -17,43 +18,36 @@ class Postform extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const post = {
-      title: this.state.title,
-      body: this.state.body,
-    };
-    this.props.createPosts(post);
+    this.props.createPost(this.state);
   };
 
   render() {
     return (
       <div>
         <h1>Add Posts</h1>
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <label> Title :</label> <br />
-            <input
-              type="text"
-              name="title"
-              onChange={this.onChange}
-              value={this.state.title}
-            />
-          </div>
+
+        <Form onSubmit={this.onSubmit}>
+          <Label> Title: </Label>
+          <Input
+            type="text"
+            name="title"
+            onChange={this.onChange}
+            value={this.state.title}
+          />
           <br />
-          <div>
-            <label> Body :</label> <br />
-            <textarea
-              type="text"
-              name="body"
-              onChange={this.onChange}
-              value={this.state.body}
-            />
-          </div>
+          <Label> Body: </Label>
+          <Input
+            name="body"
+            onChange={this.onChange}
+            value={this.state.body}
+            type="textarea"
+          />
           <br />
-          <button type="submit">Submit</button>
-        </form>
+          <Button type="submit"> Submit</Button>
+        </Form>
       </div>
     );
   }
 }
 
-export default connect(null, { createPosts })(Postform);
+export default connect(null, { createPost })(Postform);
