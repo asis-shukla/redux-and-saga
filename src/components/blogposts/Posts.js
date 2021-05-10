@@ -16,7 +16,7 @@ class Posts extends Component {
   render() {
     if (this.props.posts && this.props.posts.length > 0) {
       return (
-        <div style={{ margin: "10px" }}>
+        <div>
           <h1> Posts </h1>
           {this.props.posts.map((post) => (
             <div key={post.id}>

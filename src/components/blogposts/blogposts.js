@@ -4,11 +4,8 @@ import Postform from "./Postform";
 
 export default function blogposts() {
   return (
-    <div>
-      <h1> Blog Posts </h1>
-      <div style={{ margin: "10px" }}>
-        <Postform />
-      </div>
+    <div style={{ margin: "15px", padding: "15px" }}>
+      <Postform />
       <hr />
       <Posts />
     </div>

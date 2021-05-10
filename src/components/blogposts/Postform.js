@@ -24,7 +24,7 @@ class Postform extends Component {
   render() {
     return (
       <div>
-        <h1>Add Posts</h1>
+        <h1>Add Post</h1>
 
         <Form onSubmit={this.onSubmit}>
           <Label> Title: </Label>
@@ -43,7 +43,9 @@ class Postform extends Component {
             type="textarea"
           />
           <br />
-          <Button type="submit"> Submit</Button>
+          <Button color="primary" type="submit">
+            Submit
+          </Button>
         </Form>
       </div>
     );
